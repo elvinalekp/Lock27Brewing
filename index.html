@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lock 27 Brewing – Craft Beer & Scratch Kitchen | Centerville, OH</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;1,9..144,500;1,9..144,700&family=Archivo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --ink: #12171B;
+  --night: #182128;
+  --canal: #1F4E5F;
+  --canal-deep: #163B49;
+  --copper: #C77D2E;
+  --amber: #E8A33D;
+  --foam: #FBF8F1;
+  --cream: #F3ECDD;
+  --sand: #E6DBC2;
+  --text: #1B1F22;
+  --muted: #6D6A60;
+  --line: rgba(18,23,27,0.12);
+  --line-light: rgba(251,248,241,0.12);
+}
+
+html { scroll-behavior: smooth; }
+body { background: var(--foam); color: var(--text); font-family: 'Archivo', sans-serif; font-weight: 400; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+
+/* PREVIEW BAR */
+.preview-bar { background: var(--amber); color: var(--ink); text-align: center; padding: 0.55rem 1rem; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
+
+/* NAV */
+nav { position: sticky; top: 0; z-index: 100; background: rgba(18,23,27,0.96); backdrop-filter: blur(14px); border-bottom: 1px solid var(--line-light); padding: 0 3rem; height: 68px; display: flex; justify-content: space-between; align-items: center; }
+.logo { display: flex; align-items: center; gap: 0.8rem; text-decoration: none; }
+.logo-mark { width: 38px; height: 38px; border-radius: 50%; border: 2px solid var(--amber); display: flex; align-items: center; justify-content: center; font-family: 'Fraunces', serif; font-weight: 700; font-size: 0.95rem; color: var(--amber); }
+.logo-text { line-height: 1.05; }
+.logo-name { font-family: 'Fraunces', serif; font-size: 1.2rem; font-weight: 700; color: var(--foam); letter-spacing: 0.02em; }
+.logo-sub { font-size: 0.58rem; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(251,248,241,0.5); }
+.nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
+.nav-links a { text-decoration: none; font-size: 0.74rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(251,248,241,0.6); transition: color 0.2s; }
+.nav-links a:hover { color: var(--amber); }
+.nav-call { background: var(--amber); color: var(--ink) !important; padding: 0.6rem 1.3rem; border-radius: 3px; font-weight: 700 !important; }
+.nav-call:hover { background: #f2b455; }
+
+/* HERO */
+.hero { min-height: 92vh; display: grid; grid-template-columns: 1.05fr 1fr; overflow: hidden; }
+.hero-left { background: var(--ink); padding: 6rem 4.5rem; display: flex; flex-direction: column; justify-content: center; position: relative; }
+.hero-left::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 70% 50% at 0% 100%, rgba(199,125,46,0.14) 0%, transparent 60%); pointer-events: none; }
+.eyebrow { display: flex; align-items: center; gap: 0.8rem; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.24em; text-transform: uppercase; color: var(--amber); margin-bottom: 1.6rem; opacity: 0; animation: fadeUp 0.7s forwards 0.2s; position: relative; }
+.eyebrow::before { content: ''; width: 28px; height: 2px; background: var(--amber); }
+.hero-title { font-family: 'Fraunces', serif; font-size: clamp(3rem, 5.6vw, 5.8rem); font-weight: 700; line-height: 0.98; color: var(--foam); opacity: 0; animation: fadeUp 0.9s forwards 0.35s; position: relative; }
+.hero-title em { font-style: italic; color: var(--amber); }
+.hero-sub { font-size: 1.02rem; line-height: 1.8; color: rgba(251,248,241,0.62); margin-top: 1.8rem; max-width: 420px; opacity: 0; animation: fadeUp 0.9s forwards 0.5s; position: relative; }
+.hero-ctas { display: flex; gap: 1rem; margin-top: 2.4rem; flex-wrap: wrap; opacity: 0; animation: fadeUp 0.9s forwards 0.65s; position: relative; }
+.btn { display: inline-block; text-decoration: none; padding: 1rem 2rem; border-radius: 3px; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; transition: all 0.25s; font-family: 'Archivo', sans-serif; border: none; cursor: pointer; }
+.btn-amber { background: var(--amber); color: var(--ink); }
+.btn-amber:hover { background: #f2b455; transform: translateY(-2px); box-shadow: 0 10px 28px rgba(232,163,61,0.35); }
+.btn-ghost { background: transparent; color: var(--foam); border: 1.5px solid rgba(251,248,241,0.3); }
+.btn-ghost:hover { border-color: var(--amber); color: var(--amber); }
+.btn-dark { background: var(--ink); color: var(--foam); }
+.btn-dark:hover { background: var(--canal); transform: translateY(-2px); }
+.hero-stats { display: flex; gap: 2.6rem; margin-top: 3.4rem; padding-top: 2.4rem; border-top: 1px solid var(--line-light); flex-wrap: wrap; opacity: 0; animation: fadeUp 0.9s forwards 0.8s; position: relative; }
+.stat-num { font-family: 'Fraunces', serif; font-size: 2.1rem; font-weight: 700; color: var(--amber); line-height: 1; }
+.stat-label { font-size: 0.64rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(251,248,241,0.45); margin-top: 0.3rem; }
+
+.hero-right { background: linear-gradient(165deg, var(--canal) 0%, var(--canal-deep) 70%, #0F2B36 100%); position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+.waves { position: absolute; left: 0; right: 0; bottom: 0; width: 100%; height: 42%; }
+.hero-right-inner { position: relative; z-index: 2; text-align: center; padding: 3rem; }
+.pint { width: 210px; max-width: 60%; margin: 0 auto 1.6rem; display: block; filter: drop-shadow(0 22px 40px rgba(0,0,0,0.35)); animation: bob 5s ease-in-out infinite; }
+.hero-card { background: rgba(251,248,241,0.08); border: 1px solid rgba(251,248,241,0.16); backdrop-filter: blur(6px); border-radius: 6px; padding: 1.4rem 1.8rem; text-align: left; max-width: 340px; margin: 0 auto 1rem; }
+.hero-card-label { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--amber); margin-bottom: 0.5rem; }
+.hero-card-text { font-family: 'Fraunces', serif; font-size: 1rem; line-height: 1.55; color: var(--foam); }
+.hero-pill { display: inline-block; background: var(--amber); color: var(--ink); padding: 0.6rem 1.3rem; border-radius: 3px; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+
+/* STRIP */
+.strip { background: var(--amber); padding: 0.9rem 3rem; display: flex; justify-content: center; align-items: center; gap: 2.4rem; flex-wrap: wrap; }
+.strip span { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink); }
+.strip i { width: 4px; height: 4px; border-radius: 50%; background: var(--ink); opacity: 0.4; display: block; }
+
+/* SECTION BASICS */
+.section-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.24em; text-transform: uppercase; color: var(--copper); display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.8rem; }
+.section-label::before { content: ''; width: 24px; height: 2px; background: var(--copper); }
+.section-title { font-family: 'Fraunces', serif; font-size: clamp(2rem, 4vw, 3.3rem); font-weight: 700; line-height: 1.08; color: var(--ink); margin-bottom: 2.6rem; }
+.section-title em { font-style: italic; color: var(--copper); }
+
+/* MENU */
+.menu-section { padding: 7rem 4rem 5rem; max-width: 1200px; margin: 0 auto; }
+.menu-note { font-size: 0.74rem; color: var(--muted); margin: -1.6rem 0 2rem; }
+.tabs { display: flex; border-bottom: 2px solid var(--sand); margin-bottom: 2.2rem; overflow-x: auto; }
+.tab { background: none; border: none; border-bottom: 3px solid transparent; margin-bottom: -2px; padding: 0.8rem 1.8rem; font-family: 'Archivo', sans-serif; font-size: 0.76rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); cursor: pointer; white-space: nowrap; transition: all 0.2s; }
+.tab.active { color: var(--ink); border-bottom-color: var(--copper); }
+.tab:hover { color: var(--ink); }
+.menu-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--sand); }
+.menu-card { background: var(--foam); padding: 1.8rem 2rem; transition: background 0.2s; position: relative; }
+.menu-card:hover { background: #fff; }
+.menu-card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--copper); transform: scaleY(0); transform-origin: bottom; transition: transform 0.3s; }
+.menu-card:hover::before { transform: scaleY(1); }
+.menu-name { font-family: 'Fraunces', serif; font-size: 1.12rem; font-weight: 700; color: var(--ink); margin-bottom: 0.3rem; }
+.menu-desc { font-size: 0.84rem; color: var(--muted); line-height: 1.6; }
+.menu-tag { display: inline-block; margin-top: 0.6rem; font-size: 0.6rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--copper); background: rgba(199,125,46,0.1); padding: 0.18rem 0.55rem; border-radius: 2px; }
+
+/* STORY */
+.story { background: var(--canal-deep); color: var(--foam); padding: 7rem 4rem; position: relative; overflow: hidden; }
+.story::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, rgba(251,248,241,0.025) 0px, rgba(251,248,241,0.025) 1px, transparent 1px, transparent 26px); pointer-events: none; }
+.story-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1.1fr 1fr; gap: 6rem; align-items: center; position: relative; }
+.story .section-label { color: var(--amber); }
+.story .section-label::before { background: var(--amber); }
+.story .section-title { color: var(--foam); margin-bottom: 1.6rem; }
+.story .section-title em { color: var(--amber); }
+.story p { font-size: 0.97rem; line-height: 1.9; color: rgba(251,248,241,0.68); margin-bottom: 1rem; }
+.timeline { display: flex; flex-direction: column; gap: 1px; background: var(--line-light); }
+.tl-item { background: rgba(251,248,241,0.04); padding: 1.7rem 2rem; display: flex; gap: 1.6rem; align-items: flex-start; transition: background 0.25s; }
+.tl-item:hover { background: rgba(232,163,61,0.09); }
+.tl-year { font-family: 'Fraunces', serif; font-size: 1.6rem; font-weight: 700; color: var(--amber); min-width: 72px; line-height: 1; }
+.tl-title { font-weight: 700; font-size: 0.92rem; margin-bottom: 0.2rem; }
+.tl-desc { font-size: 0.8rem; color: rgba(251,248,241,0.55); line-height: 1.6; }
+
+/* FEATURE */
+.feature { padding: 6rem 4rem; max-width: 1200px; margin: 0 auto; }
+.feature-card { background: var(--ink); border-radius: 8px; padding: 3.5rem 4rem; display: grid; grid-template-columns: 1fr auto; gap: 3rem; align-items: center; position: relative; overflow: hidden; }
+.feature-card::after { content: ''; position: absolute; right: -80px; top: -80px; width: 280px; height: 280px; border-radius: 50%; background: radial-gradient(circle, rgba(232,163,61,0.22) 0%, transparent 70%); }
+.feature-tag { font-size: 0.64rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--amber); margin-bottom: 0.8rem; }
+.feature-title { font-family: 'Fraunces', serif; font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 700; color: var(--foam); line-height: 1.1; margin-bottom: 0.9rem; }
+.feature-title em { font-style: italic; color: var(--amber); }
+.feature-text { font-size: 0.92rem; line-height: 1.8; color: rgba(251,248,241,0.6); max-width: 560px; }
+.feature-badge { font-family: 'Fraunces', serif; font-size: 4.5rem; font-weight: 700; color: var(--amber); line-height: 1; text-align: center; position: relative; z-index: 1; }
+.feature-badge small { display: block; font-family: 'Archivo', sans-serif; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(251,248,241,0.5); margin-top: 0.5rem; }
+
+/* LOVE */
+.love { background: var(--cream); padding: 6.5rem 4rem; }
+.love-inner { max-width: 1200px; margin: 0 auto; }
+.love-top { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 1.5rem; margin-bottom: 0; }
+.rating-box { display: flex; align-items: center; gap: 1rem; background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 1rem 1.6rem; margin-bottom: 2.6rem; }
+.rating-num { font-family: 'Fraunces', serif; font-size: 2.4rem; font-weight: 700; color: var(--ink); line-height: 1; }
+.rating-stars { color: var(--copper); font-size: 0.95rem; letter-spacing: 0.1em; }
+.rating-count { font-size: 0.72rem; color: var(--muted); margin-top: 0.15rem; }
+.love-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; }
+.love-card { background: #fff; border-radius: 6px; padding: 2rem; border-top: 4px solid var(--copper); box-shadow: 0 4px 18px rgba(18,23,27,0.05); transition: transform 0.25s, box-shadow 0.25s; }
+.love-card:hover { transform: translateY(-4px); box-shadow: 0 12px 34px rgba(18,23,27,0.09); }
+.love-title { font-family: 'Fraunces', serif; font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem; }
+.love-text { font-size: 0.86rem; color: var(--muted); line-height: 1.7; }
+.love-foot { font-size: 0.72rem; color: var(--muted); margin-top: 1.4rem; }
+
+/* EXPERIENCES */
+.exp { padding: 7rem 4rem; max-width: 1200px; margin: 0 auto; }
+.exp-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--sand); }
+.exp-card { background: var(--foam); padding: 2.4rem 1.8rem; transition: background 0.25s; }
+.exp-card:hover { background: #fff; }
+.exp-icon { width: 44px; height: 44px; border-radius: 50%; background: rgba(199,125,46,0.12); color: var(--copper); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; margin-bottom: 1.2rem; }
+.exp-title { font-family: 'Fraunces', serif; font-size: 1.12rem; font-weight: 700; margin-bottom: 0.4rem; }
+.exp-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.65; }
+
+/* VISIT */
+.visit { background: var(--ink); color: var(--foam); padding: 7rem 4rem; }
+.visit-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; }
+.visit .section-label { color: var(--amber); }
+.visit .section-label::before { background: var(--amber); }
+.visit .section-title { color: var(--foam); margin-bottom: 1.6rem; }
+.visit .section-title em { color: var(--amber); }
+.hours-row { display: flex; justify-content: space-between; padding: 0.95rem 0; border-bottom: 1px solid var(--line-light); font-size: 0.9rem; }
+.hours-day { color: rgba(251,248,241,0.5); }
+.hours-time { font-weight: 600; }
+.hours-note { font-size: 0.72rem; color: rgba(251,248,241,0.35); margin-top: 1rem; }
+.c-label { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--amber); margin-bottom: 0.3rem; }
+.c-val { font-family: 'Fraunces', serif; font-size: 1.2rem; font-weight: 500; margin-bottom: 1.6rem; line-height: 1.4; }
+.c-val a { color: var(--foam); text-decoration: none; }
+.c-val a:hover { color: var(--amber); }
+.good-list { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.8rem; }
+.good-list span { font-size: 0.72rem; font-weight: 600; border: 1px solid var(--line-light); padding: 0.4rem 0.9rem; border-radius: 980px; color: rgba(251,248,241,0.7); }
+
+/* FOOTER */
+footer { background: #0C1013; color: var(--foam); padding: 3.5rem 4rem 2rem; border-top: 3px solid var(--amber); }
+.footer-top { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 4rem; padding-bottom: 2.5rem; border-bottom: 1px solid var(--line-light); }
+.footer-name { font-family: 'Fraunces', serif; font-size: 1.4rem; font-weight: 700; }
+.footer-tag { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--amber); margin: 0.2rem 0 1rem; }
+.footer-desc { font-size: 0.82rem; color: rgba(251,248,241,0.4); line-height: 1.8; max-width: 380px; }
+.footer-col-title { font-size: 0.64rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--amber); margin-bottom: 1rem; }
+.footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; }
+.footer-links a { text-decoration: none; font-size: 0.82rem; color: rgba(251,248,241,0.5); transition: color 0.2s; }
+.footer-links a:hover { color: var(--foam); }
+.footer-bottom { max-width: 1200px; margin: 0 auto; padding-top: 1.8rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; font-size: 0.7rem; color: rgba(251,248,241,0.25); }
+
+@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+@media (max-width: 1024px) { .exp-grid { grid-template-columns: repeat(2, 1fr); } .love-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 900px) {
+  nav { padding: 0 1.4rem; }
+  .nav-links li:not(:last-child) { display: none; }
+  .hero { grid-template-columns: 1fr; min-height: auto; }
+  .hero-left { padding: 4.5rem 1.5rem 3rem; }
+  .hero-right { min-height: 380px; }
+  .strip { padding: 0.8rem 1.4rem; gap: 1.2rem; }
+  .menu-section, .feature, .exp { padding: 4.5rem 1.5rem; }
+  .story, .love, .visit { padding: 4.5rem 1.5rem; }
+  .menu-grid, .love-grid, .exp-grid { grid-template-columns: 1fr; }
+  .story-inner, .visit-inner { grid-template-columns: 1fr; gap: 3rem; }
+  .feature-card { grid-template-columns: 1fr; padding: 2.4rem 1.6rem; }
+  footer { padding: 3rem 1.5rem 2rem; }
+  .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+}
+</style>
+</head>
+<body>
+
+<div class="preview-bar">Concept preview built for Lock 27 Brewing · Menu and hours to be confirmed with the team</div>
+
+<nav>
+  <a href="#top" class="logo">
+    <div class="logo-mark">27</div>
+    <div class="logo-text">
+      <div class="logo-name">Lock 27 Brewing</div>
+      <div class="logo-sub">Centerville, Ohio</div>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#story">Our Story</a></li>
+    <li><a href="#experiences">Events</a></li>
+    <li><a href="#visit">Visit</a></li>
+    <li><a href="tel:9374332739" class="nav-call">Call (937) 433-2739</a></li>
+  </ul>
+</nav>
+
+<section class="hero" id="top">
+  <div class="hero-left">
+    <div class="eyebrow">Ohio Independent Craft Brewery · Since 2012</div>
+    <h1 class="hero-title">Authentically<br><em>Different.</em></h1>
+    <p class="hero-sub">Craft beer and a scratch kitchen with global influences, in the original Lock 27 home in Centerville. Family owned, named for the canal that built Dayton.</p>
+    <div class="hero-ctas">
+      <a href="tel:9374332739" class="btn btn-amber">Call to Order or Reserve</a>
+      <a href="#menu" class="btn btn-ghost">See the Menu</a>
+    </div>
+    <div class="hero-stats">
+      <div><div class="stat-num">2012</div><div class="stat-label">Brewing Since</div></div>
+      <div><div class="stat-num">4.4★</div><div class="stat-label">1,000+ Guest Reviews</div></div>
+      <div><div class="stat-num">GABF</div><div class="stat-label">Award-Winning Beers</div></div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <svg class="waves" viewBox="0 0 800 260" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,90 C120,50 240,130 380,90 C520,50 660,130 800,80 L800,260 L0,260 Z" fill="rgba(251,248,241,0.06)"/>
+      <path d="M0,130 C140,90 260,170 400,130 C540,90 680,170 800,120 L800,260 L0,260 Z" fill="rgba(251,248,241,0.07)"/>
+      <path d="M0,175 C150,140 270,205 410,175 C550,145 690,205 800,165 L800,260 L0,260 Z" fill="rgba(12,16,19,0.35)"/>
+    </svg>
+    <div class="hero-right-inner">
+      <svg class="pint" viewBox="0 0 160 220" xmlns="http://www.w3.org/2000/svg">
+        <path d="M22,30 L138,30 L124,200 Q123,210 113,210 L47,210 Q37,210 36,200 Z" fill="#E8A33D"/>
+        <path d="M30,78 L130,78 L124,200 Q123,210 113,210 L47,210 Q37,210 36,200 Z" fill="#C77D2E" opacity="0.55"/>
+        <path d="M18,34 Q18,14 44,14 Q52,2 76,6 Q96,-2 112,10 Q142,10 142,34 Q142,46 128,46 L32,46 Q18,46 18,34 Z" fill="#FBF8F1"/>
+        <path d="M44,60 L50,190" stroke="rgba(255,255,255,0.35)" stroke-width="5" stroke-linecap="round"/>
+        <circle cx="80" cy="150" r="3" fill="rgba(255,255,255,0.4)"/>
+        <circle cx="96" cy="120" r="2.5" fill="rgba(255,255,255,0.4)"/>
+        <circle cx="72" cy="104" r="2" fill="rgba(255,255,255,0.4)"/>
+        <circle cx="102" cy="168" r="2" fill="rgba(255,255,255,0.4)"/>
+      </svg>
+      <div class="hero-card">
+        <div class="hero-card-label">The Lock 27 Story</div>
+        <div class="hero-card-text">Named to honor the impact of the Miami &amp; Erie Canal on Dayton, Ohio.</div>
+      </div>
+      <div class="hero-pill">1035 S Main St · Centerville</div>
+    </div>
+  </div>
+</section>
+
+<div class="strip">
+  <span>Craft Beer</span><i></i><span>Scratch Kitchen</span><i></i><span>Cocktails</span><i></i><span>Brunch &amp; Seasonal Menus</span><i></i><span>Happy Hour</span><i></i><span>Trivia</span><i></i><span>Private Dining</span><i></i><span>Dog Friendly</span>
+</div>
+
+<section class="menu-section" id="menu">
+  <div class="section-label">From the Kitchen</div>
+  <h2 class="section-title">Food that earns its <em>place next to the beer.</em></h2>
+  <p class="menu-note">Sample menu shown for the concept. The final site will use your current menu, descriptions and prices.</p>
+  <div class="tabs">
+    <button class="tab active" onclick="switchTab(this, 'shareables')">Shareables</button>
+    <button class="tab" onclick="switchTab(this, 'handhelds')">Handhelds</button>
+    <button class="tab" onclick="switchTab(this, 'seasonal')">Brunch &amp; Seasonal</button>
+  </div>
+  <div class="menu-grid" id="menu-grid"></div>
+</section>
+
+<section class="story" id="story">
+  <div class="story-inner">
+    <div>
+      <div class="section-label">Our Story</div>
+      <h2 class="section-title">Born on the <em>canal,</em><br>brewed in Centerville.</h2>
+      <p>Lock 27 Brewing is an Ohio independent craft brewery, founded in 2012 by Steve Barnhart and named to honor the impact of the Miami &amp; Erie Canal on Dayton.</p>
+      <p>The Centerville brewpub is where it all started. It is family owned and operated, with a focus on beers that are true to style and a kitchen that treats food as seriously as the brewing.</p>
+      <p>Today the Centerville space runs as Lock 27 Brewing Restaurant, built around food, cocktails and a lineup of Lock 27 brews.</p>
+    </div>
+    <div class="timeline">
+      <div class="tl-item"><div class="tl-year">2012</div><div><div class="tl-title">Lock 27 Brewing is founded</div><div class="tl-desc">An independent Ohio craft brewery with a nod to the canal that shaped the region.</div></div></div>
+      <div class="tl-item"><div class="tl-year">2013</div><div><div class="tl-title">The Centerville brewpub opens</div><div class="tl-desc">The original home at 1035 S Main St. The poutine has been on the menu since the beginning.</div></div></div>
+      <div class="tl-item"><div class="tl-year">2022</div><div><div class="tl-title">10 years, one donut stout</div><div class="tl-desc">An anniversary collaboration with Bill's Donut Shop, brewed with ingredients from the bakery.</div></div></div>
+      <div class="tl-item"><div class="tl-year">Now</div><div><div class="tl-title">Cans and draft across Ohio</div><div class="tl-desc">Lock 27 beer is distributed through bars, restaurants and retailers around the state.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="feature">
+  <div class="feature-card">
+    <div style="position:relative;z-index:1">
+      <div class="feature-tag">Collaboration Brew</div>
+      <div class="feature-title">The <em>Bill's Donut Shop</em> stout.</div>
+      <p class="feature-text">For the brewery's 10th anniversary, Lock 27 turned a Centerville favorite into a beer: a donut-inspired stout brewed with ingredients sourced from Bill's Donut Shop.</p>
+    </div>
+    <div class="feature-badge">10<small>Year Anniversary</small></div>
+  </div>
+</section>
+
+<section class="love">
+  <div class="love-inner">
+    <div class="love-top">
+      <div>
+        <div class="section-label">Guest Favorites</div>
+        <h2 class="section-title">What people keep <em>coming back for.</em></h2>
+      </div>
+      <div class="rating-box">
+        <div class="rating-num">4.4</div>
+        <div>
+          <div class="rating-stars">★★★★★</div>
+          <div class="rating-count">1,000+ guest reviews</div>
+        </div>
+      </div>
+    </div>
+    <div class="love-grid">
+      <div class="love-card"><div class="love-title">The poutine</div><div class="love-text">A Lock 27 signature that has been on the menu since 2013, and one of the dishes guests mention most.</div></div>
+      <div class="love-card"><div class="love-title">The wings</div><div class="love-text">Long regarded as some of the best in Dayton and still one of the best-selling items on the menu.</div></div>
+      <div class="love-card"><div class="love-title">Friendly service</div><div class="love-text">Guests regularly call out the staff for being friendly and attentive, whether they come for a pint or a full meal.</div></div>
+    </div>
+    <p class="love-foot">Themes drawn from public guest reviews. The final site can feature your own handpicked reviews.</p>
+  </div>
+</section>
+
+<section class="exp" id="experiences">
+  <div class="section-label">More Than a Pint</div>
+  <h2 class="section-title">Come for the beer. <em>Stay for the night.</em></h2>
+  <div class="exp-grid">
+    <div class="exp-card"><div class="exp-icon">🍻</div><div class="exp-title">Happy Hour</div><div class="exp-desc">Daily happy hour specials on drinks. Ask us what's pouring.</div></div>
+    <div class="exp-card"><div class="exp-icon">🧠</div><div class="exp-title">Trivia Nights</div><div class="exp-desc">Bring a team and a thirst. Trivia is a regular on the Lock 27 calendar.</div></div>
+    <div class="exp-card"><div class="exp-icon">🥂</div><div class="exp-title">Private Dining</div><div class="exp-desc">Celebrations, team dinners and gatherings. Call to talk through your event.</div></div>
+    <div class="exp-card"><div class="exp-icon">🍂</div><div class="exp-title">Seasonal Menus</div><div class="exp-desc">Brunch and rotating seasonal specials, from holiday feasts to themed menus.</div></div>
+  </div>
+</section>
+
+<section class="visit" id="visit">
+  <div class="visit-inner">
+    <div>
+      <div class="section-label">Hours</div>
+      <h2 class="section-title">Pull up <em>a stool.</em></h2>
+      <div class="hours-row"><span class="hours-day">Sunday – Wednesday</span><span class="hours-time">11:00 AM – 9:00 PM</span></div>
+      <div class="hours-row"><span class="hours-day">Thursday – Saturday</span><span class="hours-time">11:00 AM – 10:00 PM</span></div>
+      <p class="hours-note">* Hours to be confirmed with the team before launch.</p>
+    </div>
+    <div>
+      <div class="section-label">Find Us</div>
+      <h2 class="section-title">Centerville's <em>original</em> Lock 27.</h2>
+      <div class="c-label">Address</div>
+      <div class="c-val">1035 South Main Street<br>Centerville, OH 45458</div>
+      <div class="c-label">Phone</div>
+      <div class="c-val"><a href="tel:9374332739">(937) 433-2739</a></div>
+      <div class="c-label">Email</div>
+      <div class="c-val"><a href="mailto:info@lock27brewing.com">info@lock27brewing.com</a></div>
+      <div class="good-list"><span>Dine-in</span><span>Delivery</span><span>Dog friendly</span><span>Private dining</span></div>
+      <a href="https://maps.google.com/?q=1035+S+Main+St+Centerville+OH+45458" target="_blank" class="btn btn-amber">Get Directions</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-name">Lock 27 Brewing</div>
+      <div class="footer-tag">Ohio Independent Craft Brewery · Centerville</div>
+      <p class="footer-desc">Family owned and operated since 2012. Craft beer, a scratch kitchen and cocktails at 1035 S Main St in Centerville.</p>
+    </div>
+    <div>
+      <div class="footer-col-title">Explore</div>
+      <ul class="footer-links"><li><a href="#menu">Menu</a></li><li><a href="#story">Our Story</a></li><li><a href="#experiences">Events</a></li><li><a href="#visit">Hours &amp; Location</a></li></ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Contact</div>
+      <ul class="footer-links"><li><a href="tel:9374332739">(937) 433-2739</a></li><li><a href="mailto:info@lock27brewing.com">info@lock27brewing.com</a></li></ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div>© 2026 Lock 27 Brewing · 1035 S Main St, Centerville OH 45458</div>
+    <div>Concept preview · not the official site</div>
+  </div>
+</footer>
+
+<script>
+const menus = {
+  shareables: [
+    ["Poutine", "A Lock 27 original, on the menu since 2013.", "Since 2013"],
+    ["Wings", "A long-time guest favorite and one of the best-selling items on the menu.", "Best Seller"],
+    ["Pierogies", "A hearty starter with Eastern European roots.", ""],
+    ["Hummus", "Served as a lighter share for the table.", ""],
+    ["Salumi Plate", "A board of cured meats built for sharing over a flight.", ""],
+    ["Asian Pork Sliders", "Small bites with big flavor, made for pairing with a pint.", "Fan Favorite"]
+  ],
+  handhelds: [
+    ["Burgers", "A staple of the Lock 27 kitchen, built to go with a cold one.", ""],
+    ["Little Havana Cuban", "A pressed Cuban sandwich with a spot on the menu from the early days.", "Signature"],
+    ["Panini", "Pressed and served hot. Ask about today's build.", ""],
+    ["Chef's Sandwich Special", "Rotating handheld from the kitchen. Ask your server.", "Ask Daily"]
+  ],
+  seasonal: [
+    ["Weekend Brunch", "A brunch menu from the Lock 27 kitchen. Confirm days and hours with the team.", "Confirm Hours"],
+    ["Loktoberfest Menu", "A German-style menu with schnitzel, sausage and spaetzle, served during the fall celebration.", "Seasonal"],
+    ["Friendsgiving Feast", "A full holiday-style dinner with beer to go around.", "Seasonal"],
+    ["Daily Specials", "Weekly food and drink specials. Ask what's on today.", "Ask Daily"]
+  ]
+};
+
+function render(key) {
+  const grid = document.getElementById('menu-grid');
+  grid.innerHTML = menus[key].map(function (m) {
+    return '<div class="menu-card"><div class="menu-name">' + m[0] + '</div><div class="menu-desc">' + m[1] + '</div>' + (m[2] ? '<span class="menu-tag">' + m[2] + '</span>' : '') + '</div>';
+  }).join('');
+}
+
+function switchTab(el, key) {
+  document.querySelectorAll('.tab').forEach(function (t) { t.classList.remove('active'); });
+  el.classList.add('active');
+  render(key);
+}
+
+render('shareables');
+</script>
+</body>
+</html>
